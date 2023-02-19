@@ -1,4 +1,12 @@
 {
+  "books":[
+    {
+      "id":1,
+      "name":"Book for you",
+      "author":"nonema",
+      "cost": 420
+    }
+  ],
   "posts": [
     {
       "id": 1,

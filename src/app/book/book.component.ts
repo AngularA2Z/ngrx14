@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,
+      
+],
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss']
 })

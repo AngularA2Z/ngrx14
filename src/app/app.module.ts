@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BookComponent } from './book/book.component';
+import { BooksEffect } from './book/store/book.effect';
+import { BookReducer } from './book/store/book.reducer';
 import { PComponent } from './p/p.component';
 
 @NgModule({
@@ -12,7 +17,11 @@ import { PComponent } from './p/p.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BookComponent,
+    EffectsModule.forRoot([BooksEffect]),
+    StoreModule.forFeature('mybooks', BookReducer),
+    StoreModule.forRoot(BookReducer),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,15 @@
+import { Injectable } from '@angular/core';
+import { Books } from './store/book';
+import { HttpClient } from '@angular/common/http';
+@Injectable({
+  providedIn: 'root'
+})
+export class BookService {
+
+
+  constructor(private http: HttpClient) { }
+
+  get() {
+    return this.http.get<Books[]>('http://localhost:3000/books');
+  }
+}
