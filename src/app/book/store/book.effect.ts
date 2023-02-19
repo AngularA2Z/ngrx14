@@ -9,6 +9,8 @@ import {
   invokeSaveNewBookAPI,
   saveNewBookAPISucess,
   setAPIStatus,
+  updateBookApi,
+  updateBookApiSucess,
 } from './book.actions';
 import { selectBooks } from './book.selector';
 import { Appstate } from './book';
@@ -51,6 +53,27 @@ export class BooksEffect {
               })
             );
             return saveNewBookAPISucess({ newBook: data });
+          })
+        );
+      })
+    );
+  });
+
+  updateBookAPI$ = createEffect(()=>{
+    return this.actions$.pipe(
+      ofType(updateBookApi),
+      switchMap((action) => {
+        this.appStore.dispatch(
+          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        );
+        return this.booksService.update(action.updateBook).pipe(
+          map((data) => {
+            this.appStore.dispatch(
+              setAPIStatus({
+                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
+              })
+            );
+            return updateBookApiSucess({ updateBook: data });
           })
         );
       })
