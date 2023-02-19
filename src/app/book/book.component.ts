@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { select, Store } from '@ngrx/store';
 import { selectBooks } from './store/book.selector';
-import { invokeBooksAPI } from './store/book.actions';
+import { invokeBooksAPI, invokeDeleteBookAPI } from './store/book.actions';
 import { RouterModule } from '@angular/router';
 
 declare var window: any;
@@ -34,5 +34,9 @@ export class BookComponent implements OnInit {
     this.deleteModal.show();
   }
 
-  delete() {}
+  delete() {
+    this.store.dispatch(invokeDeleteBookAPI({
+      id:this.idToDelete
+    }))
+  }
 }
