@@ -2,17 +2,21 @@
   <legend>Add A New Book</legend>
   <div class="mb-3">
     <label for="txtBookName" class="form-label">Book Name</label>
-    << type="text" [(ngModel)]="bookForm.name" class="form-control"
-    id="txtBookName" />
+    <input
+      type="text"
+      [(ngModel)]="bookForm.name"
+      class="form-control"
+      id="txtBookName"
+    />
   </div>
   <div class="mb-3">
     <label for="txtAuthor" class="form-label">Author</label>
-    << type="text" [(ngModel)]="bookForm.author" class="form-control"
+    <input type="text" [(ngModel)]="bookForm.author" class="form-control"
     id="txtAuthor" />
   </div>
   <div class="mb-3">
     <label for="txtCost" class="form-label">Cost</label>
-    << type="number" [(ngModel)]="bookForm.cost" class="form-control"
+    <input type="number" [(ngModel)]="bookForm.cost" class="form-control"
     id="txtCost" />
   </div>
   <button type="button" class="btn btn-dark" (click)="save()">Create</button>

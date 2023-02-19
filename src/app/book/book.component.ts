@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { select, Store } from '@ngrx/store';
 import { selectBooks } from './store/book.selector';
 import { invokeBooksAPI } from './store/book.actions';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-book',
   standalone: true,
   imports: [CommonModule,
-      
+    RouterModule,  
 ],
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss']
