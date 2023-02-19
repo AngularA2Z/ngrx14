@@ -4,6 +4,7 @@ import {
   booksFetchAPISuccess,
   saveNewBookAPISucess,
   setAPIStatus,
+  updateBookApiSucess,
 } from './book.actions';
 
 export const initialState: ReadonlyArray<Books> = [];
@@ -17,6 +18,12 @@ export const BookReducer = createReducer(
   on(saveNewBookAPISucess, (state, { newBook }) => {
     let newState = [...state];
     newState.unshift(newBook);
+    return newState;
+  }),
+
+  on(updateBookApiSucess,(state, { updateBook }) => {
+    let newState = state.filter((_) => _.id != updateBook.id);
+    newState.unshift(updateBook);
     return newState;
   })
 );
