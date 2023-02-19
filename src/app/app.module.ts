@@ -14,6 +14,10 @@ import { AddComponent } from './add/add.component';
 import { FormsModule } from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
 
+
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +33,11 @@ import { EditComponent } from './edit/edit.component';
     FormsModule,
     EffectsModule.forRoot([BooksEffect]),
     StoreModule.forFeature('mybooks', BookReducer),
-    StoreModule.forRoot({ appState: appReducer })
+    StoreModule.forRoot({ appState: appReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
