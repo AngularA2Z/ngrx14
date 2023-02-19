@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { switchMap } from 'rxjs';
-import { Appstate, Books } from '../book/store/book';
-import { setAPIStatus, updateBookApi } from '../book/store/book.actions';
-import { selectAppState, selectBookById } from '../book/store/book.selector';
+import { Books } from '../book/store/book';
+import { updateBookApi } from '../book/store/book.actions';
+import { selectBookById } from '../book/store/book.selector';
 
 @Component({
   selector: 'app-edit',
@@ -16,7 +16,6 @@ export class EditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private store: Store,
-    private appStore: Store<Appstate>
   ) {}
 
   bookForm: Books = {
@@ -46,14 +45,15 @@ export class EditComponent implements OnInit {
     this.store.dispatch(
       updateBookApi({ updateBook: { ...this.bookForm } })
     );
-    let apiStatus$ = this.appStore.pipe(select(selectAppState));
-    apiStatus$.subscribe((apState) => {
-      if (apState.apiStatus == 'success') {
-        this.appStore.dispatch(
-          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-        );
-        this.router.navigate(['/']);
-      }
-    });
+    this.router.navigate(['/']);
+    // let apiStatus$ = this.appStore.pipe(select(selectAppState));
+    // apiStatus$.subscribe((apState) => {
+    //   if (apState.apiStatus == 'success') {
+    //     this.appStore.dispatch(
+    //       setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+    //     );
+    //     this.router.navigate(['/']);
+    //   }
+    // });
   }
 }

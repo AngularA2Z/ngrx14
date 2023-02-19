@@ -5,7 +5,3 @@ export interface Books {
   cost: number;
 }
 
-export interface Appstate{
-  apiStatus:string;
-  apiResponseMessage:string;
-}
