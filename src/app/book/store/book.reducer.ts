@@ -16,15 +16,13 @@ export const BookReducer = createReducer(
   }),
 
   on(saveNewBookAPISucess, (state, { newBook }) => {
-    let newState = [...state];
-    newState.unshift(newBook);
+    let newState = [...state,newBook];
     return newState;
   }),
 
   on(updateBookApiSucess,(state, { updateBook }) => {
     let newState = state.filter((_) => _.id != updateBook.id);
-    newState.unshift(updateBook);
-    return newState;
+    return [...newState,updateBook];
   }),
 
   on(deleteBookAPISuccess, (state, { id }) => {
