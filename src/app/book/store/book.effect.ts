@@ -5,7 +5,9 @@ import { select, Store } from '@ngrx/store';
 import { EMPTY, map, mergeMap, switchMap, withLatestFrom } from 'rxjs';
 import {
   booksFetchAPISuccess,
+  deleteBookAPISuccess,
   invokeBooksAPI,
+  invokeDeleteBookAPI,
   invokeSaveNewBookAPI,
   saveNewBookAPISucess,
   setAPIStatus,
@@ -74,6 +76,28 @@ export class BooksEffect {
               })
             );
             return updateBookApiSucess({ updateBook: data });
+          })
+        );
+      })
+    );
+  });
+
+  
+  deleteBooksAPI$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(invokeDeleteBookAPI),
+      switchMap((actions) => {
+        // this.appStore.dispatch(
+        //   setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        // );
+        return this.booksService.delete(actions.id).pipe(
+          map(() => {
+            // this.appStore.dispatch(
+            //   setAPIStatus({
+            //     apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
+            //   })
+            // );
+            return deleteBookAPISuccess({ id: actions.id });
           })
         );
       })
