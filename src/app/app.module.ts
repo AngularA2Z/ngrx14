@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
@@ -19,6 +20,7 @@ import { PComponent } from './p/p.component';
     BrowserModule,
     AppRoutingModule,
     BookComponent,
+    HttpClientModule,
     EffectsModule.forRoot([BooksEffect]),
     StoreModule.forFeature('mybooks', BookReducer),
     StoreModule.forRoot(BookReducer),

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { select, Store } from '@ngrx/store';
+import { selectBooks } from './store/book.selector';
+import { invokeBooksAPI } from './store/book.actions';
 
 @Component({
   selector: 'app-book',
@@ -12,9 +15,11 @@ import { CommonModule } from '@angular/common';
 })
 export class BookComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store) {}
+  books$ = this.store.pipe(select(selectBooks));
 
   ngOnInit(): void {
+    this.store.dispatch(invokeBooksAPI());
   }
 
 }
