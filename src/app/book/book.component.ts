@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { select, Store } from '@ngrx/store';
-import { selectBooks } from './store/book.selector';
-import { invokeBooksAPI } from './store/book.actions';
+import { selectAppState, selectBooks } from './store/book.selector';
+import { invokeBooksAPI, invokeDeleteBookAPI, setAPIStatus } from './store/book.actions';
 import { RouterModule } from '@angular/router';
+import { Appstate } from './store/book';
 
 declare var window: any;
 @Component({
@@ -14,7 +15,7 @@ declare var window: any;
   styleUrls: ['./book.component.scss'],
 })
 export class BookComponent implements OnInit {
-  constructor(private store: Store) {}
+  constructor(private store: Store, private appStore: Store<Appstate>) {}
 
   books$ = this.store.pipe(select(selectBooks));
 
@@ -34,5 +35,18 @@ export class BookComponent implements OnInit {
     this.deleteModal.show();
   }
 
-  delete() {}
+  delete() {
+    this.store.dispatch(invokeDeleteBookAPI({
+      id:this.idToDelete
+    }))
+    let apiStatus$ = this.appStore.pipe(select(selectAppState));
+    apiStatus$.subscribe((apState) => {
+      if (apState.apiStatus == 'success') {
+        this.deleteModal.hide();
+        this.appStore.dispatch(
+          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        );
+      }
+    });
+  }
 }
