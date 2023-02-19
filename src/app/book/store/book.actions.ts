@@ -14,3 +14,13 @@ export const setAPIStatus = createAction(
   '[API] success or failure status',
   props<{apiStatus: Appstate}>()
 );
+
+export const invokeSaveNewBookAPI = createAction(
+  '[Books API] Inovke save new book api',
+  props<{ newBook: Books }>()
+);
+ 
+export const saveNewBookAPISucess = createAction(
+  '[Books API] save new book api success',
+  props<{ newBook: Books }>()
+);

@@ -1,27 +1,37 @@
-import { createReducer, on} from "@ngrx/store";
-import { Appstate, Books } from "./book";
-import { booksFetchAPISuccess, setAPIStatus } from "./book.actions";
- 
+import { createReducer, on } from '@ngrx/store';
+import { Appstate, Books } from './book';
+import {
+  booksFetchAPISuccess,
+  saveNewBookAPISucess,
+  setAPIStatus,
+} from './book.actions';
+
 export const initialState: ReadonlyArray<Books> = [];
- 
+
 export const BookReducer = createReducer(
-    initialState,
-    on(booksFetchAPISuccess, (state, { allBooks }) => {
-        return allBooks;
-      })
+  initialState,
+  on(booksFetchAPISuccess, (state, { allBooks }) => {
+    return allBooks;
+  }),
+
+  on(saveNewBookAPISucess, (state, { newBook }) => {
+    let newState = [...state];
+    newState.unshift(newBook);
+    return newState;
+  })
 );
 
 export const initialStateAppstate: Readonly<Appstate> = {
   apiResponseMessage: '',
   apiStatus: '',
 };
- 
+
 export const appReducer = createReducer(
   initialStateAppstate,
   on(setAPIStatus, (state, { apiStatus }) => {
     return {
       ...state,
-      ...apiStatus
+      ...apiStatus,
     };
   })
 );

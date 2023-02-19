@@ -11,6 +11,7 @@ import { BooksEffect } from './book/store/book.effect';
 import { appReducer, BookReducer } from './book/store/book.reducer';
 import { PComponent } from './p/p.component';
 import { AddComponent } from './add/add.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AddComponent } from './add/add.component';
     AppRoutingModule,
     BookComponent,
     HttpClientModule,
+    FormsModule,
     EffectsModule.forRoot([BooksEffect]),
     StoreModule.forFeature('mybooks', BookReducer),
     StoreModule.forRoot({ appState: appReducer })
