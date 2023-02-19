@@ -46,14 +46,5 @@ export class EditComponent implements OnInit {
       updateBookApi({ updateBook: { ...this.bookForm } })
     );
     this.router.navigate(['/']);
-    // let apiStatus$ = this.appStore.pipe(select(selectAppState));
-    // apiStatus$.subscribe((apState) => {
-    //   if (apState.apiStatus == 'success') {
-    //     this.appStore.dispatch(
-    //       setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-    //     );
-    //     this.router.navigate(['/']);
-    //   }
-    // });
   }
 }

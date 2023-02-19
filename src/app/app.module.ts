@@ -33,7 +33,6 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     EffectsModule.forRoot([BooksEffect]),
     StoreModule.forFeature('mybooks', BookReducer),
-    // StoreModule.forRoot({ appState: appReducer }),
     StoreModule.forRoot({  BookReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

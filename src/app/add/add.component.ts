@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import {  Books } from '../book/store/book';
 import { invokeSaveNewBookAPI } from '../book/store/book.actions';
-// import { selectAppState } from '../book/store/book.selector';
+
 
 @Component({
   selector: 'app-add',
@@ -13,7 +13,6 @@ import { invokeSaveNewBookAPI } from '../book/store/book.actions';
 export class AddComponent implements OnInit {
   constructor(
     private store: Store,
-    // private appStore: Store<Appstate>,
     private router: Router
   ) {}
 
@@ -29,14 +28,5 @@ export class AddComponent implements OnInit {
   save() {
     this.store.dispatch(invokeSaveNewBookAPI({ newBook: this.bookForm }));
     this.router.navigate(['/']);
-    // let apiStatus$ = this.appStore.pipe(select(selectAppState));
-    // apiStatus$.subscribe((apState) => {
-    //   if (apState.apiStatus == 'success') {
-    //     this.appStore.dispatch(
-    //       setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-    //     );
-    //     this.router.navigate(['/']);
-    //   }
-    // });
   }
 }

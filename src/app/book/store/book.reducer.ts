@@ -3,7 +3,6 @@ import { Books } from './book';
 import {
   booksFetchAPISuccess,
   saveNewBookAPISucess,
-  // setAPIStatus,
   updateBookApiSucess,
 } from './book.actions';
 
@@ -28,17 +27,3 @@ export const BookReducer = createReducer(
   })
 );
 
-// export const initialStateAppstate: Readonly<Appstate> = {
-//   apiResponseMessage: '',
-//   apiStatus: '',
-// };
-
-// export const appReducer = createReducer(
-//   initialStateAppstate,
-//   on(setAPIStatus, (state, { apiStatus }) => {
-//     return {
-//       ...state,
-//       ...apiStatus,
-//     };
-//   })
-// );
