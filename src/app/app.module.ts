@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
 import { BooksEffect } from './book/store/book.effect';
-import { BookReducer } from './book/store/book.reducer';
+import { appReducer, BookReducer } from './book/store/book.reducer';
 import { PComponent } from './p/p.component';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PComponent
+    PComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,7 @@ import { PComponent } from './p/p.component';
     HttpClientModule,
     EffectsModule.forRoot([BooksEffect]),
     StoreModule.forFeature('mybooks', BookReducer),
-    StoreModule.forRoot(BookReducer),
+    StoreModule.forRoot({ appState: appReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Books } from './book';
+import { Appstate, Books } from './book';
  
 export const invokeBooksAPI = createAction(
   '[Books API] Invoke Books Fetch API'
@@ -8,4 +8,9 @@ export const invokeBooksAPI = createAction(
 export const booksFetchAPISuccess = createAction(
   '[Books API] Fetch API Success',
   props<{ allBooks: Books[] }>()
+);
+
+export const setAPIStatus = createAction(
+  '[API] success or failure status',
+  props<{apiStatus: Appstate}>()
 );

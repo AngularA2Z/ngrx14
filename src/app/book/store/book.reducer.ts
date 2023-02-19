@@ -1,6 +1,6 @@
 import { createReducer, on} from "@ngrx/store";
-import { Books } from "./book";
-import { booksFetchAPISuccess } from "./book.actions";
+import { Appstate, Books } from "./book";
+import { booksFetchAPISuccess, setAPIStatus } from "./book.actions";
  
 export const initialState: ReadonlyArray<Books> = [];
  
@@ -9,4 +9,19 @@ export const BookReducer = createReducer(
     on(booksFetchAPISuccess, (state, { allBooks }) => {
         return allBooks;
       })
+);
+
+export const initialStateAppstate: Readonly<Appstate> = {
+  apiResponseMessage: '',
+  apiStatus: '',
+};
+ 
+export const appReducer = createReducer(
+  initialStateAppstate,
+  on(setAPIStatus, (state, { apiStatus }) => {
+    return {
+      ...state,
+      ...apiStatus
+    };
+  })
 );

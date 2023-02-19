@@ -4,3 +4,8 @@ export interface Books {
   author: string;
   cost: number;
 }
+
+export interface Appstate{
+  apiStatus:string;
+  apiResponseMessage:string;
+}

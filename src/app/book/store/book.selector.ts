@@ -1,4 +1,6 @@
 import { createFeatureSelector } from '@ngrx/store';
-import { Books } from './book';
+import { Appstate, Books } from './book';
  
 export const selectBooks = createFeatureSelector<Books[]>('mybooks');
+
+export const selectAppState = createFeatureSelector<Appstate>('appState');
