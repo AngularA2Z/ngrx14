@@ -12,12 +12,14 @@ import { appReducer, BookReducer } from './book/store/book.reducer';
 import { PComponent } from './p/p.component';
 import { AddComponent } from './add/add.component';
 import { FormsModule } from '@angular/forms';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PComponent,
-    AddComponent
+    AddComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
