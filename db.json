@@ -22,6 +22,8 @@
     }
   ],
   "profile": {
-    "name": "typicode"
+    "name": "typicode",
+    "run":"npm run json-run"
   }
 }
+ 
