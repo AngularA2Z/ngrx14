@@ -16,7 +16,7 @@ import { EditComponent } from './edit/edit.component';
 
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from 'src/environments/environment';
+import { Environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -35,10 +35,13 @@ import { environment } from 'src/environments/environment';
     StoreModule.forFeature('mybooks', BookReducer),
     StoreModule.forFeature('mycomments', CommentReducer),
     StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-    }),
+    // [Environment.production ? []: StoreDevtoolsModule.instrument({
+    //   maxAge: 25, // Retains last 25 states
+    //   logOnly: Environment.production, // Restrict extension to log-only mode
+    // }),]
+    !Environment.production ? StoreDevtoolsModule.instrument(
+ 
+    ) : []
   ],
   providers: [],
   bootstrap: [AppComponent]

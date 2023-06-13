@@ -11,3 +11,5 @@ export const selectBookById = (bookId: number) =>
     }
     return bookbyId[0];
   });
+
+export const selectComments = createFeatureSelector<any[]>('allComments')

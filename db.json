@@ -1,10 +1,22 @@
 {
-  "books":[
+  "books": [
     {
-      "id":1,
-      "name":"Book for you",
-      "author":"nonema",
-      "cost": 420
+      "id": 2,
+      "author": "j",
+      "name": "j",
+      "cost": 0
+    },
+    {
+      "id": 3,
+      "author": "j",
+      "name": "k",
+      "cost": 0
+    },
+    {
+      "id": 4,
+      "author": "l",
+      "name": "k",
+      "cost": 0
     }
   ],
   "posts": [
@@ -23,7 +35,6 @@
   ],
   "profile": {
     "name": "typicode",
-    "run":"npm run json-run"
+    "run": "npm run json-run"
   }
 }
- 

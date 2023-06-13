@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { selectBooks } from './store/book.selector';
 import { envokeCommentApi, invokeBooksAPI, invokeDeleteBookAPI } from './store/book.actions';
 import { RouterModule } from '@angular/router';
-
+import { Environment } from 'src/environments/environment.prod';
 declare var window: any;
 @Component({
   selector: 'app-book',
@@ -22,6 +22,7 @@ export class BookComponent implements OnInit {
   idToDelete: number = 0;
 
   ngOnInit(): void {
+    console.log(Environment.production)
     this.deleteModal = new window.bootstrap.Modal(
       document.getElementById('deleteModal')
     );

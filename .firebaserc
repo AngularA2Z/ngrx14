@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "loc-ngrx-test": {
+      "hosting": {
+        "angular-ngrx14": [
+          "loc-ngrx-test"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "loc-ngrx-test"
+  }
+}

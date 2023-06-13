@@ -3,11 +3,21 @@ import { Books } from './book';
 import {
   booksFetchAPISuccess,
   deleteBookAPISuccess,
+  fetchApiCommentSuccess,
   saveNewBookAPISucess,
   updateBookApiSucess,
 } from './book.actions';
 
 export const initialState: ReadonlyArray<Books> = [];
+
+export const initialComment: ReadonlyArray<any> =[];
+
+export const CommentReducer = createReducer(
+  initialComment,
+  on(fetchApiCommentSuccess, (state,{allcomments})=>{
+    return allcomments
+  })
+)
 
 export const BookReducer = createReducer(
   initialState,

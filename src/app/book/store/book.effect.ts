@@ -6,6 +6,8 @@ import { EMPTY, map, mergeMap, switchMap, withLatestFrom } from 'rxjs';
 import {
   booksFetchAPISuccess,
   deleteBookAPISuccess,
+  envokeCommentApi,
+  fetchApiCommentSuccess,
   invokeBooksAPI,
   invokeDeleteBookAPI,
   invokeSaveNewBookAPI,
@@ -13,13 +15,13 @@ import {
   updateBookApi,
   updateBookApiSucess,
 } from './book.actions';
-import { selectBooks } from './book.selector';
+import { selectBooks, selectComments } from './book.selector';
 @Injectable()
 export class BooksEffect {
   constructor(
     private actions$: Actions,
     private booksService: BookService,
-    private store: Store,
+    private store: Store
   ) {}
 
   loadAllBooks$ = createEffect(() =>
@@ -33,6 +35,20 @@ export class BooksEffect {
         return this.booksService
           .get()
           .pipe(map((data) => booksFetchAPISuccess({ allBooks: data })));
+      })
+    )
+  );
+  loadAllComment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(envokeCommentApi),
+      withLatestFrom(this.store.pipe(select(selectComments))),
+      mergeMap(([, commentfromStore]) => {
+        // if (commentfromStore.length > 0) {
+        //   return EMPTY;
+        // }
+        return this.booksService
+          .getComment()
+          .pipe(map((data) => fetchApiCommentSuccess({ allcomments: data })));
       })
     )
   );
@@ -50,7 +66,7 @@ export class BooksEffect {
     );
   });
 
-  updateBookAPI$ = createEffect(()=>{
+  updateBookAPI$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(updateBookApi),
       switchMap((action) => {
@@ -63,14 +79,12 @@ export class BooksEffect {
     );
   });
 
-  
   deleteBooksAPI$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(invokeDeleteBookAPI),
       switchMap((actions) => {
         return this.booksService.delete(actions.id).pipe(
           map(() => {
-
             return deleteBookAPISuccess({ id: actions.id });
           })
         );
