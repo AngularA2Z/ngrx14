@@ -22,4 +22,8 @@ export class BookService {
   delete(id: number) {
     return this.http.delete(`http://localhost:3000/books/${id}`);
   }
+
+  getComment(){
+    return this.http.get<any[]>('http://localhost:3000/comments');
+  }
 }
